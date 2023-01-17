@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -23,10 +24,11 @@ namespace ConsoleApplication2
                 Console.WriteLine(question.question);
                 for (int i = 0; i < question.answers.Length; i++)
                 {
-                    Console.WriteLine(i + " )" + question.answers[i]);
+                    int iplus1 = i + 1;
+                    Console.WriteLine(iplus1 + " )" + question.answers[i]);
                 }
                 string uAnswer = Console.ReadLine();
-                if (int.Parse(uAnswer) == question.correctIndex - 1)
+                if (int.Parse(uAnswer) == question.correctIndex)
                 {
                     correctCounter++;
                     Console.WriteLine("Correct!");
@@ -38,11 +40,22 @@ namespace ConsoleApplication2
                 }
 
             }
-            Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------");
-            Console.WriteLine("|\t Name \t| \t Total Correct Answers \t | \t Total incorrect Answers \t | \t Percentage \t | ");
-            Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------");
-            Console.WriteLine("|\t"+ name +"\t| \t\t" + correctCounter+ "\t\t | \t\t" + incorrectCounter+ "\t\t\t | \t"+  correctCounter/(correctCounter + incorrectCounter) * 100+"\t\t | ");
-            Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------");
+
+            double total = (double)correctCounter + (double)incorrectCounter;
+            double percentage = (double)correctCounter / total * 100;
+
+            String dashes = "";
+
+            for (int i = 0; i < 105; i++)
+            {
+                dashes += "-";
+            }
+
+            Console.WriteLine(dashes);
+            Console.WriteLine("|{0, -25}|{1, -25}|{2, -25}|{3, -25}|" , "Name", "Total Correct Answers","Total Incorrect Answers", "Percentage");
+            Console.WriteLine(dashes);
+            Console.WriteLine("|{0, -25}|{1, -25}|{2, -25}|{3, -25}|" , name, correctCounter,incorrectCounter, percentage);
+            Console.WriteLine(dashes);
             
         }
         
