@@ -56,7 +56,7 @@ namespace ConsoleApplication2
             Console.WriteLine(dashes);
             Console.WriteLine("|{0, -25}|{1, -25}|{2, -25}|{3, -25}|" , name, correctCounter,incorrectCounter, percentage);
             Console.WriteLine(dashes);
-            
+
         }
         
     }
